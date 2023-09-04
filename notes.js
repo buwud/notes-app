@@ -1,5 +1,7 @@
-const { timeEnd } = require('console')
 const fs = require('fs')
+
+const chalk = require('chalk')
+
 
 const getNotes = function ()
 {
@@ -12,16 +14,17 @@ const removeNote = function (title)
 
     const removedList = notes.filter(function (note)
     {
+        //o title'a sahip olanları çıkardığı yeni bir const  oluşturdu
         return note.title != title
     })
     if (notes.length === removedList.length)
     {
-        console.log('Title not found!')
+        console.log(chalk.red.inverse('Title not found!'))
     }
     else
     {
         saveNotes(removedList)
-        console.log('Note removed!')
+        console.log(chalk.green.inverse('Note removed!'))
     }
 }
 
@@ -42,11 +45,11 @@ const addNote = function (title, body)
             body: body
         })
         saveNotes(notes)
-        console.log('New note added!')
+        console.log(chalk.green.inverse('New note added!'))
     }
     else
     {
-        console.log('Note title is taken!')
+        console.log(chalk.red.inverse('Note title is taken!'))
     }
 }
 
